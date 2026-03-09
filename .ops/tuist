@@ -1,0 +1,67 @@
+#!/bin/bash
+tuist_version="4.54.3"
+thisFile="$(dirname "$0")/tuist"
+
+########################################################################
+# A wrapper for tuist which automatically downloads and runs tuist.
+# tuist executables will be installed under `build/tuist`.
+#
+# Usage
+#
+# Download and run tuist, passing arguments:
+#
+#  ./tuist -F --color
+#
+# Update this file to the latest release:
+#
+#  ./tuist --update
+#
+########################################################################
+
+if [[ "$*" == *--update* ]]; then
+  echo "Current tuist version: $tuist_version"
+  # Get all releases and find the first one that doesn't start with app@
+  releases=$(curl --silent https://api.github.com/repos/tuist/tuist/releases)
+  found_valid_tag=false
+
+  # Extract all tag_name values
+  tags=$(echo "$releases" | grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4)
+
+  # Loop through all releases to find the first valid tag
+  for tag in $tags; do
+    if [[ ! "$tag" == app@* ]]; then
+      tuist_version=$tag
+      found_valid_tag=true
+      break
+    else
+      echo "Ignoring tag that starts with app@: $tag"
+    fi
+  done
+
+  if [[ "$found_valid_tag" == false ]]; then
+    echo "No valid tag found, keeping current version"
+  fi
+  echo "Latest tuist version: $tuist_version"
+
+  # Update tuist_version in this file on line 2
+  mkdir -p build/tuist
+  sed -e "2s/tuist_version=\".*\"/tuist_version=\"$tuist_version\"/" "$thisFile" > build/tuist/tuist.tmp
+  chmod +x build/tuist/tuist.tmp
+  mv build/tuist/tuist.tmp "$thisFile"
+fi
+
+folder="$HOME/.tuist/$tuist_version"
+current_sha256=$(cat $folder/tuist.zip.dl 2> /dev/null | openssl dgst -sha256 | sed 's/^.* //')
+tuist_sha256="$(cat $folder/tuist.sha 2> /dev/null )"
+
+if [ "$current_sha256" != "$tuist_sha256" ]; then
+  echo "Downloading tuist $tuist_version..."
+  mkdir -p $folder
+  curl -L -o $folder/tuist.zip.dl https://github.com/tuist/tuist/releases/download/"$tuist_version"/tuist.zip
+  unzip -o $folder/tuist.zip.dl -d $folder
+  echo $(cat $folder/tuist.zip.dl | openssl dgst -sha256 | sed 's/^.* //') > $folder/tuist.sha
+fi
+
+if [[ "$*" != *--update* ]]; then
+  $folder/tuist "$@"
+fi
