@@ -1,13 +1,13 @@
 {
-  "originHash" : "3eaf3ad1ac7683709c1b4fdc38d159de2e842db86f4fdb84d5c3984571c92565",
+  "originHash" : "5497ddf62a58ac472e79d1678409d4f1127513d20f2ec94e10cf7855144a3858",
   "pins" : [
     {
       "identity" : "bluetooth-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoveLab-Studio/Bluetooth-iOS.git",
       "state" : {
-        "revision" : "387c565b38f4479c29b8c29123cee5579948309f",
-        "version" : "1.0.20"
+        "revision" : "c00a1399f94a52880351ca5dffa1185883466738",
+        "version" : "1.0.21"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoveLab-Studio/Connections-SDK-Apple-Distribution.git",
       "state" : {
-        "branch" : "3.0.0-beta01",
-        "revision" : "be9ee674c063a3329f33a5941c43f2c02c757678"
+        "branch" : "3.0.0-beta12",
+        "revision" : "e3df2f798fda8d1c3e8464665dba9341fb92a68f"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "8d9834a6189db730f6264db7556a7ffb751e99ee",
-        "version" : "1.4.0"
+        "revision" : "6675bc0ff86e61436e615df6fc5174e043e57924",
+        "version" : "1.4.1"
       }
     },
     {
