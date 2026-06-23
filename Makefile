@@ -14,10 +14,13 @@ generate:
 		exit $$EXIT_CODE
 
 build:
+	# The Connections SDK XCFramework ships an arm64-only simulator slice, so the
+	# x86_64 simulator arch cannot be linked. Exclude it to build on Apple Silicon.
 	xcodebuild \
 		-workspace ConnectionsSDKSample.xcworkspace \
 		-scheme ConnectionsSDKSample \
 		-destination 'generic/platform=$(PLATFORM)' \
+		EXCLUDED_ARCHS=x86_64 \
 		build
 
 open:
