@@ -17,7 +17,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/MoveLab-Studio/Connections-SDK-Apple-Distribution.git",
-            revision: "3.4.0-beta03"
+            revision: "3.7.10"
         ),
         .package(
             url: "https://github.com/MoveLab-Studio/Domain-iOS.git",
