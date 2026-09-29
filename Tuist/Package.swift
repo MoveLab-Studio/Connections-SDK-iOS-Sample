@@ -6,7 +6,21 @@ import PackageDescription
     import struct ProjectDescription.PackageSettings
 
     let packageSettings = PackageSettings(
-        productTypes: [:]
+        productTypes: [:],
+        // Xcode 27 no longer supports the iOS 12 deployment target these dependencies declare.
+        targetSettings: Dictionary(
+            uniqueKeysWithValues: [
+                "AsyncAlgorithms",
+                "Bluetooth-iOS",
+                "Cancellation",
+                "ContainersPreview",
+                "DequeModule",
+                "InternalCollectionsUtilities",
+                "Logging",
+                "OrderedCollections",
+                "Units",
+            ].map { ($0, .settings(base: ["IPHONEOS_DEPLOYMENT_TARGET": "15.0"])) }
+        )
     )
 #endif
 
