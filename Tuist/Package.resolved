@@ -1,5 +1,5 @@
 {
-  "originHash" : "19a1f94c3b8bea22e302774b62d3dce2e5b841f9ba399f43b25e1bd61e189cae",
+  "originHash" : "3c5c70930248fe0f9eac1176b358092dd20cc3c7176e65101fb8445f6f4cef08",
   "pins" : [
     {
       "identity" : "bluetooth-ios",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MoveLab-Studio/Connections-SDK-Apple-Distribution.git",
       "state" : {
-        "branch" : "3.9.1",
-        "revision" : "2c6e183bebba2e5898307abde04f007c6b71b885"
+        "branch" : "3.10.0",
+        "revision" : "9b0ae09c2e3de213552b4e281b212e7681781323"
       }
     },
     {
